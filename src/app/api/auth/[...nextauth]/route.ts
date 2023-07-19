@@ -2,26 +2,25 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import NextAuth from "next-auth";
 import connect from "@/utils/db";
 import User from "@/models/User";
+
 const handler = NextAuth({
   providers: [
-
     CredentialsProvider({
       id: "credentials",
       name: "Credentials",
       credentials: {
-        username: { label: "Username", type: "text" },
+        name: { label: "Name", type: "text" },
         password: { label: "Password", type: "password" },
       },
 
       async authorize(credentials?) {
         await connect();
-
         if (!credentials) {
           throw new Error("Credentials not found");
         }
 
         try {
-          const user = await User.findOne({ username: credentials.username });
+          const user = await User.findOne({ name: credentials.name });
 
           if (user) {
             if (credentials.password == user.password) {
@@ -38,6 +37,23 @@ const handler = NextAuth({
       },
     }),
   ],
+  session: {
+    strategy: "jwt",
+  },
+  callbacks: {
+    async jwt({ token, user}) {
+      
+      return token
+    },
+
+    async session({ session, token, user }) {
+      await connect();
+
+      const userDB = await User.findOne({_id: token.sub});
+      session.user = userDB;
+      return session;
+    },
+  },
 });
 
 export { handler as GET, handler as POST };

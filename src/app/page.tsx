@@ -11,7 +11,7 @@ function Home() {
   const [rating, setRating] = useState(0);
 
   const { status } = useSession();
-
+  
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
@@ -74,7 +74,7 @@ function Home() {
       </main>
     );
   }
-  else {
+  else if (status==="unauthenticated") {
     return (
       <main>
         <Link href={"/login"}>Login</Link>

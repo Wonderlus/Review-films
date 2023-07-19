@@ -2,6 +2,7 @@
 
 import { ReactEventHandler } from "react";
 import { useRouter } from "next/navigation";
+import { signIn } from "next-auth/react";
 
 const Registration = () => {
 
@@ -10,8 +11,8 @@ const Registration = () => {
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
-        const usernameTarget = (event.target as HTMLFormElement)[0] as HTMLInputElement;
-        const username = usernameTarget.value;
+        const nameTarget = (event.target as HTMLFormElement)[0] as HTMLInputElement;
+        const name = nameTarget.value;
 
         const passwordTarget = (event.target as HTMLFormElement)[1] as HTMLInputElement;
         const password = passwordTarget.value;
@@ -23,17 +24,19 @@ const Registration = () => {
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify({
-                    username,
+                    name,
                     password
                 }),
             })
 
-            res.status === 201 && router.push("/");
+            res.status === 201;
+            signIn("credentials", {name, password, callbackUrl:"http://localhost:3000/"});
         } catch (error: any) {
             
                 throw new Error(error);
             
         }
+        
     }
 
     return ( 

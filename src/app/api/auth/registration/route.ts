@@ -3,11 +3,11 @@ import connect from "@/utils/db";
 import { NextResponse } from "next/server";
 
 export const POST = async (request: Request) => {
-  const { username, password } = await request.json();
+  const { name, password } = await request.json();
 
   await connect();
   const newUser = new User({
-    username,
+    name,
     password,
   });
 

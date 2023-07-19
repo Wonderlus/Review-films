@@ -8,14 +8,14 @@ const Login = () => {
         event.preventDefault();
         
 
-        const usernameTarget = (event.target as HTMLFormElement)[0] as HTMLInputElement;
-        const username = usernameTarget.value;
+        const nameTarget = (event.target as HTMLFormElement)[0] as HTMLInputElement;
+        const name = nameTarget.value;
 
         const passwordTarget = (event.target as HTMLFormElement)[1] as HTMLInputElement;
         const password = passwordTarget.value;
 
 
-        signIn("credentials", {username, password})
+        signIn("credentials", {name, password, callbackUrl:"http://localhost:3000/"})
     }
 
     return ( 
