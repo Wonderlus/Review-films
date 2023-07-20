@@ -1,0 +1,46 @@
+.container {
+    padding: 20px 50px;
+    background-color: #000;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    div {
+        color: #fff;
+    }
+}
+
+.logo {
+    font-size: 20px;
+}
+
+.links {
+    display: flex;
+    gap: 20px;
+
+    a {
+        font-size: 16px;
+        text-decoration: none;
+        color: #fff;
+    }
+}
+
+.auth {
+    display: flex;
+    gap: 20px;
+}
+
+.username {
+    font-size: 18px;
+}
+
+.signout {
+    outline: none;
+    border: none;
+    background: none;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    font-weight: 500;
+}

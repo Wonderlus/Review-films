@@ -70,19 +70,11 @@ function Home() {
           <button>Submit</button>
         </form>
 
-        <button onClick={() => signOut()}>Sign Out</button>
+        
       </main>
     );
   }
-  else if (status==="unauthenticated") {
-    return (
-      <main>
-        <Link href={"/login"}>Login</Link>
-        <br />
-        <Link href={"/registration"}>Registration</Link>
-      </main>
-    )
-  }
+  
 }
 
 export default Home;

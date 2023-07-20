@@ -1,10 +1,8 @@
 import AuthProvider from "@/components/AuthProvider/AuthProvider";
 import "./globals.scss";
 
-import { Inter } from "next/font/google";
 import Navbar from "@/components/Navbar/Navbar";
 
-const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
   title: "Film Review",
@@ -19,7 +17,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <AuthProvider>
-        <body className={inter.className}>
+        <body>
           <Navbar />
           {children}
         </body>
